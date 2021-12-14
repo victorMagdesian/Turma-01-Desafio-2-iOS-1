@@ -12,7 +12,26 @@
 		8C56FDF927691DBA004598BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56FDF827691DBA004598BA /* HomeViewController.swift */; };
 		8C56FDFE27691DBC004598BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C56FDFD27691DBC004598BA /* Assets.xcassets */; };
 		8C56FE0127691DBC004598BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C56FDFF27691DBC004598BA /* LaunchScreen.storyboard */; };
+		8C56FE0B27693DAE004598BA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56FE0A27693DAE004598BA /* Coordinator.swift */; };
+		8C56FE0E27693DF8004598BA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56FE0D27693DF8004598BA /* AppCoordinator.swift */; };
+		8C56FE162769449C004598BA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56FE152769449C004598BA /* APIClient.swift */; };
+		8CA68E9627694DA20061537A /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA68E9527694DA20061537A /* Alamofire.xcframework */; };
+		8CA68E9727694DA20061537A /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA68E9527694DA20061537A /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8CA68E9827694DA20061537A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8CA68E9727694DA20061537A /* Alamofire.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8C56FDF127691DBA004598BA /* TesteIosModal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesteIosModal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +41,10 @@
 		8C56FDFD27691DBC004598BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C56FE0027691DBC004598BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C56FE0227691DBC004598BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C56FE0A27693DAE004598BA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8C56FE0D27693DF8004598BA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		8C56FE152769449C004598BA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		8CA68E9527694DA20061537A /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA68E9627694DA20061537A /* Alamofire.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +64,7 @@
 			children = (
 				8C56FDF327691DBA004598BA /* TesteIosModal */,
 				8C56FDF227691DBA004598BA /* Products */,
+				8CA68E9427694DA20061537A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,8 +79,10 @@
 		8C56FDF327691DBA004598BA /* TesteIosModal */ = {
 			isa = PBXGroup;
 			children = (
+				8C56FE17276944A1004598BA /* WebServices */,
 				8C56FE082769229B004598BA /* Resources */,
 				8C56FE09276922EF004598BA /* Views */,
+				8C56FE0C27693DB2004598BA /* Coordinators */,
 				8C56FE0227691DBC004598BA /* Info.plist */,
 			);
 			path = TesteIosModal;
@@ -80,6 +107,31 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8C56FE0C27693DB2004598BA /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				8C56FE0A27693DAE004598BA /* Coordinator.swift */,
+				8C56FE0D27693DF8004598BA /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		8C56FE17276944A1004598BA /* WebServices */ = {
+			isa = PBXGroup;
+			children = (
+				8C56FE152769449C004598BA /* APIClient.swift */,
+			);
+			path = WebServices;
+			sourceTree = "<group>";
+		};
+		8CA68E9427694DA20061537A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8CA68E9527694DA20061537A /* Alamofire.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -90,6 +142,7 @@
 				8C56FDED27691DBA004598BA /* Sources */,
 				8C56FDEE27691DBA004598BA /* Frameworks */,
 				8C56FDEF27691DBA004598BA /* Resources */,
+				8CA68E9827694DA20061537A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -150,9 +203,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C56FE0B27693DAE004598BA /* Coordinator.swift in Sources */,
 				8C56FDF927691DBA004598BA /* HomeViewController.swift in Sources */,
+				8C56FE0E27693DF8004598BA /* AppCoordinator.swift in Sources */,
 				8C56FDF527691DBA004598BA /* AppDelegate.swift in Sources */,
 				8C56FDF727691DBA004598BA /* SceneDelegate.swift in Sources */,
+				8C56FE162769449C004598BA /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +350,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TYA458BPJH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TesteIosModal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -321,6 +381,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TYA458BPJH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TesteIosModal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
