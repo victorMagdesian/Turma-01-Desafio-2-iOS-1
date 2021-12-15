@@ -10,7 +10,7 @@ import Alamofire
 
 class APIClient{
     func execute(_ url:URL){
-        AF.request(url).response { response in
+        AF.request(url).responseJSON { response in
             print(response)
         }
     }

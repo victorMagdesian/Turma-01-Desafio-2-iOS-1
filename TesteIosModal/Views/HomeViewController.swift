@@ -6,19 +6,21 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeViewController: UITableViewController {
     
-    let apiClient = APIClient()
+    var repositories: [Repository] = []
+    let api = APIClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         title = "Swift Repositories"
-        apiClient.execute(URL(string: "https://api.github.com/search/repositories?q=language:Swift&sort=stars&page=1")!)
-        
+        api.execute(URL(string: "https://api.github.com/search/repositories?q=language:Swift&sort=stars&page=1")!)
     }
+              
     
     let textLabel : UILabel = {
         let label = UILabel()
@@ -38,6 +40,4 @@ class HomeViewController: UITableViewController {
     }
 
 
-
 }
-
