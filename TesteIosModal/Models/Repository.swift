@@ -3,7 +3,9 @@ import ObjectMapper
 
 class Repository: Mappable{
     var repositoryName: String?
+    var fullName: String?
     var description: String?
+    var pullsUrl: String?
     var owner: Owner?
     var starsCount: Int?
     var forksCount: Int?
@@ -14,6 +16,8 @@ class Repository: Mappable{
     
     func mapping(map: Map) {
         repositoryName <- map["name"]
+        fullName <- map["full_name"]
+        pullsUrl <- map["pulls_url"]
         description <- map["description"]
         starsCount <- map["stargazers_count"]
         forksCount <- map["forks_count"]
