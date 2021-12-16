@@ -19,6 +19,7 @@ class AppCoordinator: Coordinator {
     override func start() {
         guard let window = window else { return }
         home()
+        navController.viewControllers.removeAll()
         window.rootViewController = navController
         window.makeKeyAndVisible()
     }

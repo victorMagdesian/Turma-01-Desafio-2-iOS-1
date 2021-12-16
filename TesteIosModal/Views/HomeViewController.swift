@@ -28,7 +28,6 @@ class HomeViewController: UITableViewController {
                     self.repositories = repos?.repositories
                     self.coordinator?.repositoriesStore = self.repositories
                     self.tableView.reloadData()
-                    self.coordinator?.detail(index: 0)
         
                 case.failure(let error):
                     print(error)
@@ -49,12 +48,9 @@ class HomeViewController: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailsViewController{
-//            vc.selectedImage = pictures[indexPath.row]
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.detail(index: indexPath.row)
+    }
 
 
 }

@@ -9,11 +9,10 @@ import UIKit
 import AlamofireImage
 import Alamofire
 
-class DetailsViewController: UIViewController {
-    
+class DetailsViewController: UIViewController{
+
     var coordinator: MainCoordinator?
     var indexRepositoriesStore: Int = 0
-    
     
     private let centerView: UIView = {
        let view = UIView()
@@ -26,6 +25,8 @@ class DetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
+        label.lineBreakMode = .byCharWrapping
+        label.numberOfLines = 3
         label.font = UIFont(name: label.font.fontName, size: 32)
         return label
     }()
@@ -59,6 +60,8 @@ class DetailsViewController: UIViewController {
     private let image: UIImageView = {
         let image = UIImageView()
         
+//DEVIDO A BLOQUEIO DO PROXY MODAL NÃO CONSEGUI REALIZAR O DOWNLOAD DO AVATAR
+        
 //        AF.request("https://avatars.githubusercontent.com/u/484656?v=4").responseImage{
 //            response in
 //
@@ -79,10 +82,16 @@ class DetailsViewController: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
+    
+    private let tablePr: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = coordinator?.repositoriesStore?[0].fullName
+        title = coordinator?.repositoriesStore?[indexRepositoriesStore].fullName
         view.backgroundColor = .white
         view.addSubview(centerView)
         centerView.addSubview(image)
@@ -94,6 +103,7 @@ class DetailsViewController: UIViewController {
         centerView.addSubview(stars)
         descricao.text = "Descrição: \((coordinator?.repositoriesStore?[indexRepositoriesStore].description)!)"
         centerView.addSubview(descricao)
+
         addConstraints()
         
         
@@ -126,11 +136,13 @@ class DetailsViewController: UIViewController {
         constraints.append(stars.topAnchor.constraint(greaterThanOrEqualTo:  image.safeAreaLayoutGuide.topAnchor))
         constraints.append(stars.trailingAnchor.constraint(equalTo: image.safeAreaLayoutGuide.trailingAnchor, constant: view.bounds.width*0.5))
         constraints.append(stars.bottomAnchor.constraint(greaterThanOrEqualTo:  image.safeAreaLayoutGuide.bottomAnchor))
- 
+
         constraints.append(descricao.leadingAnchor.constraint(equalTo: image.safeAreaLayoutGuide.leadingAnchor))
         constraints.append(descricao.topAnchor.constraint(equalTo: image.safeAreaLayoutGuide.bottomAnchor, constant: 20))
         constraints.append(descricao.trailingAnchor.constraint(equalTo:  centerView.safeAreaLayoutGuide.trailingAnchor))
         constraints.append(descricao.bottomAnchor.constraint(greaterThanOrEqualTo: image.safeAreaLayoutGuide.bottomAnchor, constant: 10))
+        
+
         
         NSLayoutConstraint.activate(constraints)
     }
