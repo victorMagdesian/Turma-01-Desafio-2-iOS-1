@@ -6,37 +6,42 @@
 //
 
 import UIKit
-import RxSwift
+import Alamofire
 
 class HomeViewController: UITableViewController {
     
-    var repositories: [Repository] = []
-    let api = APIClient()
+    var repositories: [Repository]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         title = "Swift Repositories"
-        api.execute(URL(string: "https://api.github.com/search/repositories?q=language:Swift&sort=stars&page=1")!)
+        APIClient.shared.getRepositories().responseString{
+            response in
+            switch(response.result){
+            
+                case.success(let responseString):
+                    let repos = ApiResponse(JSONString: "\(responseString)")
+                    self.repositories = repos?.repositories
+                    self.tableView.reloadData()
+        
+                case.failure(let error):
+                    print(error)
+            
+            }
+        }
     }
               
     
-    let textLabel : UILabel = {
-        let label = UILabel()
-        label.text = "TESTE"
-        return label
-        
-    }()
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return repositories!.count
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        cell.addSubview(textLabel)
-        return cell
+       RepositoryViewCell()
+        
     }
 
 
