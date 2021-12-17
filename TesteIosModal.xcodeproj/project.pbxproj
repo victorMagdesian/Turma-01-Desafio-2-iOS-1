@@ -25,6 +25,8 @@
 		8CA68EB6276AC29A0061537A /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA68EB5276AC29A0061537A /* AlamofireImage */; };
 		8CA68EBA276BC6DF0061537A /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EB9276BC6DF0061537A /* DetailsViewController.swift */; };
 		8CA68EBC276BE4B20061537A /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EBB276BE4B20061537A /* MainCoordinator.swift */; };
+		8CA68EBE276C13600061537A /* Pull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EBD276C13600061537A /* Pull.swift */; };
+		8CA68EC0276D06FF0061537A /* PullTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EBF276D06FF0061537A /* PullTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +58,8 @@
 		8CA68EAE276A93EC0061537A /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		8CA68EB9276BC6DF0061537A /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		8CA68EBB276BE4B20061537A /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		8CA68EBD276C13600061537A /* Pull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pull.swift; sourceTree = "<group>"; };
+		8CA68EBF276D06FF0061537A /* PullTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 				8C56FDF827691DBA004598BA /* HomeViewController.swift */,
 				8C56FDFF27691DBC004598BA /* LaunchScreen.storyboard */,
 				8CA68EB9276BC6DF0061537A /* DetailsViewController.swift */,
+				8CA68EBF276D06FF0061537A /* PullTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			children = (
 				8CA68EA2276A676F0061537A /* Repository.swift */,
 				8CA68EAE276A93EC0061537A /* Owner.swift */,
+				8CA68EBD276C13600061537A /* Pull.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,6 +252,8 @@
 				8CA68EAA276A8BD80061537A /* APIResponse.swift in Sources */,
 				8CA68EBC276BE4B20061537A /* MainCoordinator.swift in Sources */,
 				8C56FDF727691DBA004598BA /* SceneDelegate.swift in Sources */,
+				8CA68EC0276D06FF0061537A /* PullTableViewCell.swift in Sources */,
+				8CA68EBE276C13600061537A /* Pull.swift in Sources */,
 				8C56FE162769449C004598BA /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

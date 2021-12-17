@@ -21,5 +21,12 @@ class APIClient{
     public func getRepositories() -> DataRequest{
         //var repositories:[Repository]?
         AF.request(URL(string: "https://api.github.com/search/repositories?q=language:Swift&sort=stars&page=1")!)
+
+    }
+    
+    public func getPulls(repo:String) -> DataRequest{
+        //var repositories:[Repository]?
+        AF.request(URL(string:
+    "https://api.github.com/repos/\(repo)/pulls")!)
     }
 }

@@ -12,6 +12,7 @@ import Alamofire
 class DetailsViewController: UIViewController{
 
     var coordinator: MainCoordinator?
+    var pulls: [Pull]?
     var indexRepositoriesStore: Int = 0
     
     private let centerView: UIView = {
@@ -86,13 +87,31 @@ class DetailsViewController: UIViewController{
     private let tablePr: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(PullTableViewCell.self, forCellReuseIdentifier: PullTableViewCell.identifier)
         table.backgroundColor = .systemGray2
         return table
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        APIClient.shared.getPulls(repo: (coordinator?.repositoriesStore?[indexRepositoriesStore].fullName)!).responseString{
+            response in
+            
+            switch(response.result){
+
+                case.success(var responseString):
+                    responseString = "{\"prs\":" + responseString + "}"
+                    let pull = PullsApiResponse(JSONString: "\(responseString)")
+                    self.pulls = pull?.prs
+                    self.tablePr.reloadData()
+
+                case.failure(let error):
+                    print(error)
+            
+            }
+        }
+        
         title = coordinator?.repositoriesStore?[indexRepositoriesStore].fullName
         view.backgroundColor = .white
         view.addSubview(centerView)
@@ -106,17 +125,13 @@ class DetailsViewController: UIViewController{
         descricao.text = "Descrição: \((coordinator?.repositoriesStore?[indexRepositoriesStore].description)!)"
         centerView.addSubview(descricao)
         tablePr.dataSource = self
+        tablePr.delegate = self
         centerView.addSubview(tablePr)
         addConstraints()
         
         
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        tablePr.frame = CGRect(x: 0, y: view.bounds.height/2, width: view.bounds.width, height: view.bounds.height)
-//    }
-//
     private func addConstraints() {
         var constraints = [NSLayoutConstraint]()
         
@@ -166,15 +181,22 @@ class DetailsViewController: UIViewController{
 
 }
 
-extension DetailsViewController: UITableViewDataSource{
+extension DetailsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        pulls?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PullTableViewCell.identifier, for: indexPath) as? PullTableViewCell
+        cell?.title.text = pulls?[indexPath.row].title
+        cell?.ownerName.text = pulls?[indexPath.row].owner?.name
+        cell?.date.text = pulls?[indexPath.row].date
+        cell?.body.text = pulls?[indexPath.row].body
+        return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        350
     }
     
     

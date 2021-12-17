@@ -20,3 +20,15 @@ class ApiResponse : Mappable {
     }
 }
 
+class PullsApiResponse : Mappable {
+    var prs : [Pull]?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        prs <- map["prs"]
+    }
+}
+

@@ -22,13 +22,13 @@ class HomeViewController: UITableViewController {
         APIClient.shared.getRepositories().responseString{
             response in
             switch(response.result){
-            
+
                 case.success(let responseString):
                     let repos = ApiResponse(JSONString: "\(responseString)")
                     self.repositories = repos?.repositories
                     self.coordinator?.repositoriesStore = self.repositories
                     self.tableView.reloadData()
-        
+
                 case.failure(let error):
                     print(error)
             
