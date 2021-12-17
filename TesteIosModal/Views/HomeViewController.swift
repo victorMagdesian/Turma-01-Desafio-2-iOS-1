@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController{
     
     var coordinator: MainCoordinator?
     var repositories: [Repository]? = []
@@ -50,6 +50,30 @@ class HomeViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         coordinator?.detail(index: indexPath.row)
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        print("\(position)   \(tableView.contentSize.height)")
+        if position > tableView.contentSize.height-890{
+            APIClient.shared.nextPage()
+            APIClient.shared.getRepositories().responseString{
+                response in
+                switch(response.result){
+                    
+                    case.success(let responseString):
+                        let repos = ApiResponse(JSONString: "\(responseString)")
+                        self.repositories! += (repos?.repositories) ?? []
+                        self.coordinator?.repositoriesStore = self.repositories
+                        self.tableView.reloadData()
+
+                    case.failure(let error):
+                        print(error)
+                
+                }
+            }
+
+        }
     }
 
 

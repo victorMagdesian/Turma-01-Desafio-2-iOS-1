@@ -27,6 +27,7 @@
 		8CA68EBC276BE4B20061537A /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EBB276BE4B20061537A /* MainCoordinator.swift */; };
 		8CA68EBE276C13600061537A /* Pull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EBD276C13600061537A /* Pull.swift */; };
 		8CA68EC0276D06FF0061537A /* PullTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EBF276D06FF0061537A /* PullTableViewCell.swift */; };
+		8CA68EC2276D25B70061537A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA68EC1276D25B70061537A /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,7 @@
 		8CA68EBB276BE4B20061537A /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		8CA68EBD276C13600061537A /* Pull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pull.swift; sourceTree = "<group>"; };
 		8CA68EBF276D06FF0061537A /* PullTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullTableViewCell.swift; sourceTree = "<group>"; };
+		8CA68EC1276D25B70061537A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				8C56FDFF27691DBC004598BA /* LaunchScreen.storyboard */,
 				8CA68EB9276BC6DF0061537A /* DetailsViewController.swift */,
 				8CA68EBF276D06FF0061537A /* PullTableViewCell.swift */,
+				8CA68EC1276D25B70061537A /* WebViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				8CA68EBC276BE4B20061537A /* MainCoordinator.swift in Sources */,
 				8C56FDF727691DBA004598BA /* SceneDelegate.swift in Sources */,
 				8CA68EC0276D06FF0061537A /* PullTableViewCell.swift in Sources */,
+				8CA68EC2276D25B70061537A /* WebViewController.swift in Sources */,
 				8CA68EBE276C13600061537A /* Pull.swift in Sources */,
 				8C56FE162769449C004598BA /* APIClient.swift in Sources */,
 			);

@@ -26,6 +26,13 @@ class MainCoordinator: Coordinator {
         vc.coordinator = self
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func webView(url:URL){
+        let vc = WebViewController()
+        vc.url = url
+        vc.coordinator = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
     func storeFilters(filters: [UIButton]) {
         self.filters.append(contentsOf: filters)

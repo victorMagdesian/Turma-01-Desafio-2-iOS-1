@@ -9,6 +9,7 @@ import UIKit
 import AlamofireImage
 import Alamofire
 
+
 class DetailsViewController: UIViewController{
 
     var coordinator: MainCoordinator?
@@ -199,5 +200,8 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate{
         350
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.webView(url: URL(string: (pulls?[indexPath.row].webViewUrl)!)!)
+    }
     
 }
