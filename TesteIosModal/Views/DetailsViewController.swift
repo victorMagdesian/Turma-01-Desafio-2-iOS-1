@@ -37,7 +37,7 @@ class DetailsViewController: UIViewController{
         label.textColor = .white
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = .max
-        label.font = UIFont(name: label.font.fontName, size: 28)
+        label.sizeToFit()
         return label
     }()
     
@@ -85,7 +85,9 @@ class DetailsViewController: UIViewController{
     
     private let tablePr: UITableView = {
         let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.backgroundColor = .systemGray2
         return table
     }()
 
@@ -103,12 +105,18 @@ class DetailsViewController: UIViewController{
         centerView.addSubview(stars)
         descricao.text = "Descrição: \((coordinator?.repositoriesStore?[indexRepositoriesStore].description)!)"
         centerView.addSubview(descricao)
-
+        tablePr.dataSource = self
+        centerView.addSubview(tablePr)
         addConstraints()
         
         
     }
     
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        tablePr.frame = CGRect(x: 0, y: view.bounds.height/2, width: view.bounds.width, height: view.bounds.height)
+//    }
+//
     private func addConstraints() {
         var constraints = [NSLayoutConstraint]()
         
@@ -140,8 +148,15 @@ class DetailsViewController: UIViewController{
         constraints.append(descricao.leadingAnchor.constraint(equalTo: image.safeAreaLayoutGuide.leadingAnchor))
         constraints.append(descricao.topAnchor.constraint(equalTo: image.safeAreaLayoutGuide.bottomAnchor, constant: 20))
         constraints.append(descricao.trailingAnchor.constraint(equalTo:  centerView.safeAreaLayoutGuide.trailingAnchor))
-        constraints.append(descricao.bottomAnchor.constraint(greaterThanOrEqualTo: image.safeAreaLayoutGuide.bottomAnchor, constant: 10))
+        constraints.append(descricao.bottomAnchor.constraint(equalTo: image.safeAreaLayoutGuide.bottomAnchor, constant: 100))
         
+        
+        constraints.append(tablePr.leadingAnchor.constraint(equalTo: centerView.safeAreaLayoutGuide.leadingAnchor))
+        constraints.append(tablePr.topAnchor.constraint(equalTo: descricao.safeAreaLayoutGuide.bottomAnchor, constant: 20))
+        constraints.append(tablePr.trailingAnchor.constraint(equalTo:  centerView.safeAreaLayoutGuide.trailingAnchor))
+        constraints.append(tablePr.bottomAnchor.constraint(equalTo: centerView.safeAreaLayoutGuide.bottomAnchor))
+        
+
 
         
         NSLayoutConstraint.activate(constraints)
@@ -151,3 +166,16 @@ class DetailsViewController: UIViewController{
 
 }
 
+extension DetailsViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        return cell
+    }
+    
+    
+}
