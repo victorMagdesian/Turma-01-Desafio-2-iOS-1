@@ -18,10 +18,17 @@ class AppCoordinator: Coordinator {
 
     override func start() {
         guard let window = window else { return }
+        home()
+        navController.viewControllers.removeAll()
         window.rootViewController = navController
         window.makeKeyAndVisible()
     }
 
-
+    func home() {
+        let child = MainCoordinator(navigationController: navController)
+        child.parentCoordinator = self
+        addChildCoordinator(child)
+        child.start()
+    }
 
 }

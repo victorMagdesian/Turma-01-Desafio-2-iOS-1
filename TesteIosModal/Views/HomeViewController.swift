@@ -6,38 +6,75 @@
 //
 
 import UIKit
+import Alamofire
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController{
     
-    let apiClient = APIClient()
+    var coordinator: MainCoordinator?
+    var repositories: [Repository]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         title = "Swift Repositories"
-        apiClient.execute(URL(string: "https://api.github.com/search/repositories?q=language:Swift&sort=stars&page=1")!)
-        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RepositoryCell")
+        APIClient.shared.getRepositories().responseString{
+            response in
+            switch(response.result){
+
+                case.success(let responseString):
+                    let repos = ApiResponse(JSONString: "\(responseString)")
+                    self.repositories = repos?.repositories
+                    self.coordinator?.repositoriesStore = self.repositories
+                    self.tableView.reloadData()
+
+                case.failure(let error):
+                    print(error)
+            
+            }
+        }
     }
-    
-    let textLabel : UILabel = {
-        let label = UILabel()
-        label.text = "TESTE"
-        return label
-        
-    }()
+              
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return repositories!.count
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        cell.addSubview(textLabel)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath)
+        cell.textLabel?.text = self.repositories![indexPath.row].repositoryName
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.detail(index: indexPath.row)
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        print("\(position)   \(tableView.contentSize.height)")
+        if position > tableView.contentSize.height-890{
+            APIClient.shared.nextPage()
+            APIClient.shared.getRepositories().responseString{
+                response in
+                switch(response.result){
+                    
+                    case.success(let responseString):
+                        let repos = ApiResponse(JSONString: "\(responseString)")
+                        self.repositories! += (repos?.repositories) ?? []
+                        self.coordinator?.repositoriesStore = self.repositories
+                        self.tableView.reloadData()
+
+                    case.failure(let error):
+                        print(error)
+                
+                }
+            }
+
+        }
     }
 
 
-
 }
-
